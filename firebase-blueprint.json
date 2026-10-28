@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "SiteCredits": {
+      "title": "SiteCredits",
+      "description": "Stores site creator and information sources editable by users in real-time",
+      "type": "object",
+      "properties": {
+        "creatorName": {
+          "type": "string",
+          "description": "The name of the site creator",
+          "maxLength": 100
+        },
+        "infoSources": {
+          "type": "array",
+          "description": "List of sources for the information in the project",
+          "items": {
+            "type": "string"
+          }
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when the credits were last updated",
+          "maxLength": 100
+        }
+      },
+      "required": ["creatorName", "infoSources"]
+    },
+    "TeacherEvaluation": {
+      "title": "TeacherEvaluation",
+      "description": "Teacher grade out of 20 and feedback comments",
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "string",
+          "description": "Score out of 20",
+          "maxLength": 10
+        },
+        "feedback": {
+          "type": "string",
+          "description": "Teacher feedback note",
+          "maxLength": 1000
+        },
+        "teacherName": {
+          "type": "string",
+          "description": "Optional teacher name",
+          "maxLength": 100
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Submission timestamp",
+          "maxLength": 100
+        }
+      },
+      "required": ["score", "feedback"]
+    }
+  },
+  "firestore": {
+    "/site_meta/{metaId}": {
+      "schema": "SiteCredits",
+      "description": "Configuration and credits documents for the project"
+    },
+    "/evaluations/{evaluationId}": {
+      "schema": "TeacherEvaluation",
+      "description": "Teacher grade and feedback submissions"
+    }
+  }
+}
